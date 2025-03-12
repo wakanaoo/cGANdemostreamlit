@@ -43,9 +43,9 @@ class Generator(nn.Module):
 latent_dim = 10
 n_classes = 10
 
-# モデルの初期化とロード
-generator = Generator(latent_dim, n_classes).to(device)
-generator.load_state_dict(torch.load("GANgenerator.pth", map_location=device), strict=False)
+# モデルのロード（weights_only=False を明示）
+generator = torch.load("GANgenerator.pth", map_location=device, weights_only=False)
+generator.to(device)
 generator.eval()
 
 # Streamlit UI
